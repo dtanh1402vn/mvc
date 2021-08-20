@@ -3,10 +3,10 @@
 namespace MVC\Controllers;
 
 use MVC\Core\Controller;
-use MVC\Models\TaskModel;
-use MVC\Models\TaskRepository;
+use MVC\Models\SinhVienModel;
+use MVC\Models\SinhVienRepository;
 
-class TasksController extends Controller
+class SinhVienController extends Controller
 {
     function index()
     {
@@ -16,16 +16,16 @@ class TasksController extends Controller
 
         // $d['tasks'] = $tasks->showAllTasks();
 
-        $taskRepository = new TaskRepository();
+        $sinhVienRepository = new SinhVienRepository();
 
-        $d['tasks'] = $taskRepository->getAll();
+        $d['sinhvien'] = $sinhVienRepository->getAll();
         $this->set($d);
         $this->render("index");
     }
 
     function create()
     {
-        if (isset($_POST["title"]))
+        if (isset($_POST["name"]))
         {
             //require(ROOT . 'Models/Task.php');
 
@@ -36,14 +36,14 @@ class TasksController extends Controller
             //     header("Location: " . WEBROOT . "tasks/index");
             // }
 
-            $taskRepository = new TaskRepository();
-            $model = new TaskModel();
-            $model->setTitle($_POST["title"]);
-            $model->setDescription($_POST["description"]);
+            $sinhVienRepository = new SinhVienRepository();
+            $model = new SinhVienModel();
+            $model->setName($_POST["name"]);
+            $model->setAge($_POST["age"]);
 
-            if ($taskRepository->add($model))
+            if ($sinhVienRepository->add($model))
             {
-                header("Location: " . WEBROOT . "tasks/index");
+                header("Location: " . WEBROOT . "sinhvien/index");
             }
         }
 
@@ -57,25 +57,25 @@ class TasksController extends Controller
 
         // $d["task"] = $task->showTask($id);
 
-        $taskRepository = new TaskRepository();
-        $oldModel = $taskRepository->get($id);
-        $d["task"] = $oldModel->getProperties();
+        $sinhVienRepository = new SinhVienRepository();
+        $oldModel = $sinhVienRepository->get($id);
+        $d["sinhvien"] = $oldModel->getProperties();
 
-        if (isset($_POST["title"]))
+        if (isset($_POST["name"]))
         {
             // if ($task->edit($id, $_POST["title"], $_POST["description"]))
             // {
             //     header("Location: " . WEBROOT . "tasks/index");
             // }
 
-            $model = new TaskModel();
+            $model = new SinhVienModel();
             $model->setId($id);
-            $model->setTitle($_POST["title"]);
-            $model->setDescription($_POST["description"]);
+            $model->setName($_POST["name"]);
+            $model->setAge($_POST["age"]);
 
-            if ($taskRepository->add($model))
+            if ($sinhVienRepository->add($model))
             {
-                header("Location: " . WEBROOT . "tasks/index");
+                header("Location: " . WEBROOT . "sinhvien/index");
             }
         }
         $this->set($d);
@@ -86,10 +86,10 @@ class TasksController extends Controller
     {
         //require(ROOT . 'Models/Task.php');
 
-        $taskRepository = new TaskRepository();
-        if ($taskRepository->delete($id))
+        $sinhVienRepository = new SinhVienRepository();
+        if ($sinhVienRepository->delete($id))
         {
-            header("Location: " . WEBROOT . "tasks/index");
+            header("Location: " . WEBROOT . "sinhvien/index");
         }
     }
 }

@@ -7,12 +7,4 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
-    'MVC\\Config\\Database' => $baseDir . '/Config/Database.php',
-    'MVC\\Controllers\\TasksController' => $baseDir . '/Controllers/TasksController.php',
-    'MVC\\Core\\Controller' => $baseDir . '/Core/Controller.php',
-    'MVC\\Core\\Model' => $baseDir . '/Core/Model.php',
-    'MVC\\Dispatcher' => $baseDir . '/Dispatcher.php',
-    'MVC\\Models\\Task' => $baseDir . '/Models/Task.php',
-    'MVC\\Request' => $baseDir . '/Request.php',
-    'MVC\\Router' => $baseDir . '/Router.php',
 );
